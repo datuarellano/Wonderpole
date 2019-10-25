@@ -3,7 +3,7 @@
 #include <AnalogSmooth.h>
 
 AnalogSmooth asTouch = AnalogSmooth();
-AnalogSmooth asPitch = AnalogSmooth();
+AnalogSmooth asPitch = AnalogSmooth(15);
 AnalogSmooth asAccelX = AnalogSmooth(15);
 AnalogSmooth asAccelZ = AnalogSmooth(15);
 AnalogSmooth asVolume = AnalogSmooth();
