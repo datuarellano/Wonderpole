@@ -72,11 +72,11 @@ void loop() {
   // Read analog pin of Pot 1 then smoothen readings
   freqHigh = analogRead(tuneHighPin);
   freqHigh = asFreqHigh.smooth(freqHigh);
-  freqHigh = map(freqHigh, 0, 1023, 261, 2637);
+  freqHigh = map(freqHigh, 0, 1023, 220, 1760);
   // Read analog pin of Pot 2 then smoothen readings
   freqLow = analogRead(tuneLowPin);
   freqLow = asFreqLow.smooth(freqLow);
-  freqLow = map(freqLow, 0, 1023, 33, 131);
+  freqLow = map(freqLow, 0, 1023, 55, 110);
 
   // Serial.print(freqHigh);
   // Serial.print(" -- ");
