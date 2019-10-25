@@ -170,20 +170,39 @@ void loop() {
   // Serial.println();
 
   // WIND RAIN SEA
-  accel_x = asAccelX.smooth(accel_x);
-  float rain_freq = -(constrain(accel_x, -6000, -100));
-  float rain_amp = rain_freq / 6000;
   tonesweep1.play(0.5, 500, 9000, 2);
   pink1.amplitude(0.8);
-  filter1.frequency(rain_freq);
-  mixer1.gain(3, rain_amp);
+  tonesweep2.play(0.5, 300, 12000, 2);
+  noise1.amplitude(0.8);
+
+  accel_x = asAccelX.smooth(accel_x);
+
+  if (accel_x < 0) {
+    float rain_freq = -(constrain(accel_x, -6000, -100));
+    float rain_amp = rain_freq / 6000;
+    filter1.frequency(rain_freq);
+    mixer1.gain(3, rain_amp);
+  }
+
+  else if (accel_x > 0) {
+    float rain_freq2 = (constrain(accel_x, 0, 6000));
+    float rain_amp2 = rain_freq2 / 6000;
+    filter3.frequency(rain_freq2);
+    mixer1.gain(3, rain_amp2 - 0.2);
+    string1.noteOn(rain_freq2, 0.10);
+  }
+
+  else {
+    mixer1.gain(3, 0);
+    string1.noteOff(0);
+  }
+
 
   // LOWER OCTAVE
   // HIGHER OCTAVE
   accel_z = asAccelZ.smooth(accel_z);
   float octaves = constrain(accel_z, -6000, 6000);
   float octavesMix = octaves/6000;
-  Serial.println(accel_z);
   if (octaves > 1500) {
     sine_fm1.frequency(pitch/3);
     sine_fm1.amplitude(octavesMix);
