@@ -1,0 +1,656 @@
+{
+    "version": 1,
+    "settings": {
+        "main": {},
+        "arduino": {
+            "Board": {
+                "Platform": "",
+                "Board": "",
+                "Options": ""
+            }
+        },
+        "BiDirDataWebSocketBridge": {},
+        "workspaces": {},
+        "sidebar": {},
+        "palette": {},
+        "editor": {},
+        "devTest": {},
+        "IndexedDBfiles": {
+            "testFileNames": "testFile.txt"
+        },
+        "NodeDefGenerator": {},
+        "NodeDefManager": {},
+        "NodeHelpManager": {},
+        "OSC": {}
+    },
+    "workspaces": [
+        {
+            "type": "tab",
+            "id": "Main",
+            "label": "Main",
+            "nodes": [
+                {
+                    "id": "dc1",
+                    "type": "AudioSynthWaveformDc",
+                    "name": "dc1",
+                    "x": 1158,
+                    "y": 1046,
+                    "z": "Main",
+                    "bgColor": "#E6E0F8",
+                    "wires": [
+                        [
+                            {
+                                "def": "multiply1:1",
+                                "style": {
+                                    "line1": {},
+                                    "line2": {
+                                        "enabled": false
+                                    },
+                                    "line3": {
+                                        "enabled": false
+                                    }
+                                }
+                            },
+                            {
+                                "def": "multiply2:0",
+                                "style": {
+                                    "line1": {},
+                                    "line2": {
+                                        "enabled": false
+                                    },
+                                    "line3": {
+                                        "enabled": false
+                                    }
+                                }
+                            }
+                        ]
+                    ]
+                },
+                {
+                    "id": "pink1",
+                    "type": "AudioSynthNoisePink",
+                    "name": "pink1",
+                    "x": 1157,
+                    "y": 1310,
+                    "z": "Main",
+                    "bgColor": "#E6E0F8",
+                    "wires": [
+                        [
+                            {
+                                "def": "multiply3:0",
+                                "style": {
+                                    "line1": {},
+                                    "line2": {
+                                        "enabled": false
+                                    },
+                                    "line3": {
+                                        "enabled": false
+                                    }
+                                }
+                            }
+                        ]
+                    ]
+                },
+                {
+                    "id": "tonesweep1",
+                    "type": "AudioSynthToneSweep",
+                    "name": "tonesweep1",
+                    "x": 1166,
+                    "y": 1361,
+                    "z": "Main",
+                    "bgColor": "#E6E0F8",
+                    "wires": [
+                        [
+                            {
+                                "def": "multiply3:1",
+                                "style": {
+                                    "line1": {},
+                                    "line2": {
+                                        "enabled": false
+                                    },
+                                    "line3": {
+                                        "enabled": false
+                                    }
+                                }
+                            }
+                        ]
+                    ]
+                },
+                {
+                    "id": "noise1",
+                    "type": "AudioSynthNoiseWhite",
+                    "name": "noise1",
+                    "x": 1185,
+                    "y": 1506,
+                    "z": "Main",
+                    "bgColor": "#E6E0F8",
+                    "wires": [
+                        [
+                            {
+                                "def": "multiply4:0",
+                                "style": {
+                                    "line1": {},
+                                    "line2": {
+                                        "enabled": false
+                                    },
+                                    "line3": {
+                                        "enabled": false
+                                    }
+                                }
+                            }
+                        ]
+                    ]
+                },
+                {
+                    "id": "tonesweep2",
+                    "type": "AudioSynthToneSweep",
+                    "name": "tonesweep2",
+                    "x": 1171,
+                    "y": 1560,
+                    "z": "Main",
+                    "bgColor": "#E6E0F8",
+                    "wires": [
+                        [
+                            {
+                                "def": "multiply4:1",
+                                "style": {
+                                    "line1": {},
+                                    "line2": {
+                                        "enabled": false
+                                    },
+                                    "line3": {
+                                        "enabled": false
+                                    }
+                                }
+                            }
+                        ]
+                    ]
+                },
+                {
+                    "id": "waveform1",
+                    "type": "AudioSynthWaveform",
+                    "name": "waveform1",
+                    "x": 1285,
+                    "y": 1106,
+                    "z": "Main",
+                    "bgColor": "#E6E0F8",
+                    "wires": [
+                        [
+                            {
+                                "def": "multiply2:1",
+                                "style": {
+                                    "line1": {},
+                                    "line2": {
+                                        "enabled": false
+                                    },
+                                    "line3": {
+                                        "enabled": false
+                                    }
+                                }
+                            }
+                        ]
+                    ]
+                },
+                {
+                    "id": "sine1",
+                    "type": "AudioSynthWaveformSine",
+                    "name": "sine1",
+                    "x": 1301,
+                    "y": 993,
+                    "z": "Main",
+                    "bgColor": "#E6E0F8",
+                    "wires": [
+                        [
+                            {
+                                "def": "multiply1:0",
+                                "style": {
+                                    "line1": {},
+                                    "line2": {
+                                        "enabled": false
+                                    },
+                                    "line3": {
+                                        "enabled": false
+                                    }
+                                }
+                            }
+                        ]
+                    ]
+                },
+                {
+                    "id": "multiply3",
+                    "type": "AudioEffectMultiply",
+                    "name": "multiply3",
+                    "x": 1311,
+                    "y": 1326,
+                    "z": "Main",
+                    "bgColor": "#E6E0F8",
+                    "wires": [
+                        [
+                            {
+                                "def": "filter1:0",
+                                "style": {
+                                    "line1": {},
+                                    "line2": {
+                                        "enabled": false
+                                    },
+                                    "line3": {
+                                        "enabled": false
+                                    }
+                                }
+                            }
+                        ]
+                    ]
+                },
+                {
+                    "id": "multiply4",
+                    "type": "AudioEffectMultiply",
+                    "name": "multiply4",
+                    "x": 1337,
+                    "y": 1513,
+                    "z": "Main",
+                    "bgColor": "#E6E0F8",
+                    "wires": [
+                        [
+                            {
+                                "def": "mixer3:0",
+                                "style": {
+                                    "line1": {},
+                                    "line2": {
+                                        "enabled": false
+                                    },
+                                    "line3": {
+                                        "enabled": false
+                                    }
+                                }
+                            }
+                        ]
+                    ]
+                },
+                {
+                    "id": "string1",
+                    "type": "AudioSynthKarplusStrong",
+                    "name": "string1",
+                    "x": 1327,
+                    "y": 1578,
+                    "z": "Main",
+                    "bgColor": "#E6E0F8",
+                    "wires": [
+                        [
+                            {
+                                "def": "mixer3:1",
+                                "style": {
+                                    "line1": {},
+                                    "line2": {
+                                        "enabled": false
+                                    },
+                                    "line3": {
+                                        "enabled": false
+                                    }
+                                }
+                            }
+                        ]
+                    ]
+                },
+                {
+                    "id": "multiply1",
+                    "type": "AudioEffectMultiply",
+                    "name": "multiply1",
+                    "x": 1474,
+                    "y": 1015,
+                    "z": "Main",
+                    "bgColor": "#E6E0F8",
+                    "wires": [
+                        [
+                            {
+                                "def": "mixer1:0",
+                                "style": {
+                                    "line1": {},
+                                    "line2": {
+                                        "enabled": false
+                                    },
+                                    "line3": {
+                                        "enabled": false
+                                    }
+                                }
+                            }
+                        ]
+                    ]
+                },
+                {
+                    "id": "multiply2",
+                    "type": "AudioEffectMultiply",
+                    "name": "multiply2",
+                    "x": 1441,
+                    "y": 1085,
+                    "z": "Main",
+                    "bgColor": "#E6E0F8",
+                    "wires": [
+                        [
+                            {
+                                "def": "filter2:0",
+                                "style": {
+                                    "line1": {},
+                                    "line2": {
+                                        "enabled": false
+                                    },
+                                    "line3": {
+                                        "enabled": false
+                                    }
+                                }
+                            },
+                            {
+                                "def": "sine_fm1:0",
+                                "style": {
+                                    "line1": {},
+                                    "line2": {
+                                        "enabled": false
+                                    },
+                                    "line3": {
+                                        "enabled": false
+                                    }
+                                }
+                            }
+                        ]
+                    ]
+                },
+                {
+                    "id": "filter1",
+                    "type": "AudioFilterStateVariable",
+                    "name": "filter1",
+                    "x": 1453,
+                    "y": 1333,
+                    "z": "Main",
+                    "bgColor": "#E6E0F8",
+                    "wires": [
+                        [
+                            {
+                                "def": "freeverb1:0",
+                                "style": {
+                                    "line1": {},
+                                    "line2": {
+                                        "enabled": false
+                                    },
+                                    "line3": {
+                                        "enabled": false
+                                    }
+                                }
+                            },
+                            {
+                                "def": "mixer2:0",
+                                "style": {
+                                    "line1": {},
+                                    "line2": {
+                                        "enabled": false
+                                    },
+                                    "line3": {
+                                        "enabled": false
+                                    }
+                                }
+                            }
+                        ],
+                        [],
+                        []
+                    ]
+                },
+                {
+                    "id": "mixer3",
+                    "type": "AudioMixer4",
+                    "name": "mixer3",
+                    "x": 1476,
+                    "y": 1565,
+                    "z": "Main",
+                    "bgColor": "#E6E0F8",
+                    "wires": [
+                        [
+                            {
+                                "def": "filter3:0",
+                                "style": {
+                                    "line1": {},
+                                    "line2": {
+                                        "enabled": false
+                                    },
+                                    "line3": {
+                                        "enabled": false
+                                    }
+                                }
+                            }
+                        ]
+                    ]
+                },
+                {
+                    "id": "filter2",
+                    "type": "AudioFilterStateVariable",
+                    "name": "filter2",
+                    "x": 1589,
+                    "y": 1082,
+                    "z": "Main",
+                    "bgColor": "#E6E0F8",
+                    "wires": [
+                        [
+                            {
+                                "def": "mixer1:1",
+                                "style": {
+                                    "line1": {},
+                                    "line2": {
+                                        "enabled": false
+                                    },
+                                    "line3": {
+                                        "enabled": false
+                                    }
+                                }
+                            }
+                        ],
+                        [],
+                        []
+                    ]
+                },
+                {
+                    "id": "sine_fm1",
+                    "type": "AudioSynthWaveformSineModulated",
+                    "name": "sine_fm1",
+                    "x": 1589,
+                    "y": 1168,
+                    "z": "Main",
+                    "bgColor": "#E6E0F8",
+                    "wires": [
+                        [
+                            {
+                                "def": "mixer1:2",
+                                "style": {
+                                    "line1": {},
+                                    "line2": {
+                                        "enabled": false
+                                    },
+                                    "line3": {
+                                        "enabled": false
+                                    }
+                                }
+                            }
+                        ]
+                    ]
+                },
+                {
+                    "id": "freeverb1",
+                    "type": "AudioEffectFreeverb",
+                    "name": "freeverb1",
+                    "x": 1568,
+                    "y": 1251,
+                    "z": "Main",
+                    "bgColor": "#E6E0F8",
+                    "wires": [
+                        [
+                            {
+                                "def": "mixer2:1",
+                                "style": {
+                                    "line1": {},
+                                    "line2": {
+                                        "enabled": false
+                                    },
+                                    "line3": {
+                                        "enabled": false
+                                    }
+                                }
+                            }
+                        ]
+                    ]
+                },
+                {
+                    "id": "mixer2",
+                    "type": "AudioMixer4",
+                    "name": "mixer2",
+                    "x": 1679,
+                    "y": 1321,
+                    "z": "Main",
+                    "bgColor": "#E6E0F8",
+                    "wires": [
+                        [
+                            {
+                                "def": "mixer1:3",
+                                "style": {
+                                    "line1": {},
+                                    "line2": {
+                                        "enabled": false
+                                    },
+                                    "line3": {
+                                        "enabled": false
+                                    }
+                                }
+                            }
+                        ]
+                    ]
+                },
+                {
+                    "id": "filter3",
+                    "type": "AudioFilterStateVariable",
+                    "name": "filter3",
+                    "x": 1601,
+                    "y": 1514,
+                    "z": "Main",
+                    "bgColor": "#E6E0F8",
+                    "wires": [
+                        [
+                            {
+                                "def": "mixer2:2",
+                                "style": {
+                                    "line1": {},
+                                    "line2": {
+                                        "enabled": false
+                                    },
+                                    "line3": {
+                                        "enabled": false
+                                    }
+                                }
+                            }
+                        ],
+                        [],
+                        []
+                    ]
+                },
+                {
+                    "id": "mixer1",
+                    "type": "AudioMixer4",
+                    "name": "mixer1",
+                    "x": 1833,
+                    "y": 1075,
+                    "z": "Main",
+                    "bgColor": "#E6E0F8",
+                    "wires": [
+                        [
+                            {
+                                "def": "mainAmp:0",
+                                "style": {
+                                    "line1": {},
+                                    "line2": {
+                                        "enabled": false
+                                    },
+                                    "line3": {
+                                        "enabled": false
+                                    }
+                                }
+                            }
+                        ]
+                    ]
+                },
+                {
+                    "id": "mainAmp",
+                    "type": "AudioAmplifier",
+                    "name": "mainAmp",
+                    "x": 1968,
+                    "y": 1075,
+                    "z": "Main",
+                    "bgColor": "#E6E0F8",
+                    "wires": [
+                        [
+                            {
+                                "def": "i2s1:0",
+                                "style": {
+                                    "line1": {},
+                                    "line2": {
+                                        "enabled": false
+                                    },
+                                    "line3": {
+                                        "enabled": false
+                                    }
+                                }
+                            },
+                            {
+                                "def": "i2s1:1",
+                                "style": {
+                                    "line1": {},
+                                    "line2": {
+                                        "enabled": false
+                                    },
+                                    "line3": {
+                                        "enabled": false
+                                    }
+                                }
+                            }
+                        ]
+                    ]
+                },
+                {
+                    "id": "sgtl5000_1",
+                    "type": "AudioControlSGTL5000",
+                    "name": "sgtl5000_1",
+                    "x": 2005,
+                    "y": 998,
+                    "z": "Main",
+                    "bgColor": "#E6E0F8",
+                    "wires": []
+                },
+                {
+                    "id": "i2s1",
+                    "type": "AudioOutputI2S",
+                    "name": "i2s1",
+                    "x": 2113,
+                    "y": 1075,
+                    "z": "Main",
+                    "bgColor": "#E6E0F8",
+                    "wires": []
+                }
+            ],
+            "links": [],
+            "export": true,
+            "isMain": false,
+            "mainNameType": "tabName",
+            "mainNameExt": ".ino",
+            "isAudioMain": false,
+            "generateCppDestructor": false,
+            "extraClassDeclarations": "",
+            "settings": {
+                "scaleFactor": 0.9
+            }
+        }
+    ],
+    "nodeAddons": {
+        "FAUST": {
+            "isAddon": true,
+            "label": "faust",
+            "description": "FAUST objects",
+            "credits": "manicken",
+            "homepage": "",
+            "url": "",
+            "types": {}
+        }
+    }
+}
