@@ -8,6 +8,10 @@ bool acc_right = false;
 bool acc_fore = false;
 bool acc_back = false;
 
+// Thresholds
+float acc_min_thresh = 1.6;
+float acc_max_thresh = 8.0;
+
 void accelerometerTest() {
   /* Get a new normalized sensor event */
   sensors_event_t accel;
@@ -134,11 +138,6 @@ void accelerometer()
 
   
   // Check direction of pole
-  
-  // Thresholds
-  float acc_min_thresh = 1.6;
-  float acc_max_thresh = 8.0;
-  
   // LEFT
   if (accel.acceleration.x <= acc_min_thresh)
   {
