@@ -182,7 +182,7 @@ void volume() {
 //// MPU6050 //////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////
 Adafruit_MPU6050 mpu;
-Adafruit_Sensor *mpu_accel, *mpu_gyro;
+Adafruit_Sensor *mpu_accel;
 
 void setupMPU6050() {
   Serial.println("Adafruit MPU6050 test!");
@@ -197,7 +197,6 @@ void setupMPU6050() {
   Serial.println("MPU6050 Found!");
 
   mpu_accel = mpu.getAccelerometerSensor();
-  mpu_gyro = mpu.getGyroSensor();
 }
 
 
