@@ -38,6 +38,7 @@ void accelerometerTest() {
   else if (accel.acceleration.z > -acc_min_thresh && accel.acceleration.z < acc_min_thresh)
     Serial.println("QUIET Z");
 
+  delay(50);
 }
 
 void accelerometer()
@@ -47,6 +48,12 @@ void accelerometer()
   /* Get a new normalized sensor event */
   sensors_event_t accel;
   mpu_accel->getEvent(&accel);
+
+  // Constrain accelerometer values
+  if (accel.acceleration.x > 10)
+    accel.acceleration.x = 10;
+  if (accel.acceleration.z > 10)
+    accel.acceleration.z = 10;
 
   // Accelerometer Mode Switch
   int acc_fade = 800;
@@ -144,25 +151,25 @@ void accelerometer()
   
   // Check direction of pole
   // LEFT
-  if (accel.acceleration.x <= acc_min_thresh)
+  if (accel.acceleration.x < -acc_min_thresh)
   {
     acc_left = true;
     acc_right = false;
   }
   // RIGHT
-  else if (accel.acceleration.x >= acc_min_thresh)
+  else if (accel.acceleration.x > acc_min_thresh)
   {
     acc_left = false;
     acc_right = true;
   }
   // FORE
-  if (accel.acceleration.z <= acc_min_thresh)
+  if (accel.acceleration.z < -acc_min_thresh)
   {
     acc_fore = true;
     acc_back = false;
   }
   // BACK
-  else if (accel.acceleration.z >= acc_min_thresh)
+  else if (accel.acceleration.z > acc_min_thresh)
   {
     acc_fore = false;
     acc_back = true;
@@ -184,6 +191,15 @@ void accelerometer()
     mixer_acc_sub1.gain(1, 0);
     mixer_acc_sub2.gain(1, map(accel.acceleration.x, acc_min_thresh, acc_max_thresh, 0.0, 1.0));
   }
+  // QUIET X
+  if (accel.acceleration.x > -acc_min_thresh && accel.acceleration.x < acc_min_thresh)
+  {
+    filter1.frequency(0);
+    filter2.frequency(0);
+    mixer_acc_sub1.gain(1, 0);
+    mixer_acc_sub2.gain(1, 0);
+  }
+
   // Z Axis FORWARD
   if (acc_fore == true)
   {
@@ -199,15 +215,8 @@ void accelerometer()
     mixer_acc_sub3.gain(1, 0);
     mixer_acc_sub4.gain(1, map(accel.acceleration.z, acc_min_thresh, acc_max_thresh, 0.0, 1.0));
   }
-  // "CENTER" Be quiet between -2 and +2
-  if (accel.acceleration.x > -acc_min_thresh && accel.acceleration.x < acc_min_thresh)
-  {
-    filter1.frequency(0);
-    filter2.frequency(0);
-    mixer_acc_sub1.gain(1, 0);
-    mixer_acc_sub2.gain(1, 0);
-  }
-  if (accel.acceleration.z > -acc_min_thresh && accel.acceleration.z < acc_min_thresh)
+  // QUIET Z
+  else if (accel.acceleration.z > -acc_min_thresh && accel.acceleration.z < acc_min_thresh)
   {
     filter3.frequency(0);
     filter4.frequency(0);
