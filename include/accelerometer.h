@@ -24,15 +24,20 @@ void accelerometerTest() {
   if (accel.acceleration.z > 10)
     accel.acceleration.z = 10;
 
-  if (accel.acceleration.x < -1.6)
+  if (accel.acceleration.x < -acc_min_thresh)
     Serial.println(accel.acceleration.x);
-  else if (accel.acceleration.x > 1.6)
+  else if (accel.acceleration.x > acc_min_thresh)
     Serial.println(accel.acceleration.x);
-  
-  if (accel.acceleration.z < -1.6)
+  else if (accel.acceleration.x > -acc_min_thresh && accel.acceleration.x < acc_min_thresh)
+    Serial.println("QUIET X");
+
+  if (accel.acceleration.z < -acc_min_thresh)
     Serial.println(accel.acceleration.z);
-  else if (accel.acceleration.z > 1.6)
+  else if (accel.acceleration.z > acc_min_thresh)
     Serial.println(accel.acceleration.z);
+  else if (accel.acceleration.z > -acc_min_thresh && accel.acceleration.z < acc_min_thresh)
+    Serial.println("QUIET Z");
+
 }
 
 void accelerometer()
