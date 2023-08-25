@@ -15,24 +15,10 @@ void accelerometer()
   /* Get a new normalized sensor event */
   sensors_event_t accel;
   mpu_accel->getEvent(&accel);
-  // sensors_event_t gyro;
-  // mpu_gyro->getEvent(&gyro);
-
-  /* Display the results (acceleration is measured in m/s^2) */
-  // Serial.println(accel.acceleration.x);
-  // Serial.println(accel.acceleration.y);
-  // Serial.println(accel.acceleration.z);
-  // Serial.println(gyro.gyro.x);
-  // Serial.println(gyro.gyro.y);
-  // Serial.println(gyro.gyro.z);
-  // Serial.println("");
 
   // Accelerometer Mode Switch
   int acc_fade = 800;
-  // Serial.println(sw_accelmode_1.read());
-  // Serial.println(sw_accelmode_2.read());
-  // Serial.println(acc_play);
-  // Serial.println(" ");
+  
   if (sw_accelmode_1.read() == LOW && acc_play == false)
   {
     acc_play = true;
@@ -123,9 +109,13 @@ void accelerometer()
     waveform_5.arbitraryWaveform(AKWF_ebass_0001, 3000);
   }
 
+  
   // Check direction of pole
+  
+  // Thresholds
   float acc_min_thresh = 1.6;
   float acc_max_thresh = 8.0;
+  
   // LEFT
   if (accel.acceleration.x <= acc_min_thresh)
   {
