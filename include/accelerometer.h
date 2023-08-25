@@ -8,6 +8,29 @@ bool acc_right = false;
 bool acc_fore = false;
 bool acc_back = false;
 
+void accelerometerTest() {
+  /* Get a new normalized sensor event */
+  sensors_event_t accel;
+  mpu_accel->getEvent(&accel);
+
+  // I think we may need to constrain the values
+  // since they can exceed > 10.0
+  if (accel.acceleration.x > 10)
+    accel.acceleration.x = 10;
+  if (accel.acceleration.z > 10)
+    accel.acceleration.z = 10;
+
+  if (accel.acceleration.x < -1.6)
+    Serial.println(accel.acceleration.x);
+  else if (accel.acceleration.x > 1.6)
+    Serial.println(accel.acceleration.x);
+  
+  if (accel.acceleration.z < -1.6)
+    Serial.println(accel.acceleration.z);
+  else if (accel.acceleration.z > 1.6)
+    Serial.println(accel.acceleration.z);
+}
+
 void accelerometer()
 {
   mixer2.gain(0, 0.8);
