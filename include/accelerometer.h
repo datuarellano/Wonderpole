@@ -7,6 +7,8 @@ bool acc_left = false;
 bool acc_right = false;
 bool acc_fore = false;
 bool acc_back = false;
+bool acc_mute_x = false;
+bool acc_mute_z = false;
 
 // Thresholds
 float acc_min_thresh = 1.6;
@@ -155,24 +157,38 @@ void accelerometer()
   {
     acc_left = true;
     acc_right = false;
+    acc_mute_x = false;
   }
   // RIGHT
   else if (accel.acceleration.x > acc_min_thresh)
   {
     acc_left = false;
     acc_right = true;
+    acc_mute_x = false;
   }
   // FORE
   if (accel.acceleration.z < -acc_min_thresh)
   {
     acc_fore = true;
     acc_back = false;
+    acc_mute_z = false;
   }
   // BACK
   else if (accel.acceleration.z > acc_min_thresh)
   {
     acc_fore = false;
     acc_back = true;
+    acc_mute_z = false;
+  }
+  // MUTE X
+  if (accel.acceleration.x > -acc_min_thresh && accel.acceleration.x < acc_min_thresh)
+  {
+    acc_mute_x = true;
+  }
+  // MUTE Y
+  if (accel.acceleration.z > -acc_min_thresh && accel.acceleration.z < acc_min_thresh)
+  {
+    acc_mute_z = true;
   }
 
   // Open up filters and amp gains depending on direction of pole
@@ -191,14 +207,6 @@ void accelerometer()
     mixer_acc_sub1.gain(1, 0);
     mixer_acc_sub2.gain(1, map(accel.acceleration.x, acc_min_thresh, acc_max_thresh, 0.0, 1.0));
   }
-  // QUIET X
-  if (accel.acceleration.x > -acc_min_thresh && accel.acceleration.x < acc_min_thresh)
-  {
-    filter1.frequency(0);
-    filter2.frequency(0);
-    mixer_acc_sub1.gain(1, 0);
-    mixer_acc_sub2.gain(1, 0);
-  }
 
   // Z Axis FORWARD
   if (acc_fore == true)
@@ -215,8 +223,17 @@ void accelerometer()
     mixer_acc_sub3.gain(1, 0);
     mixer_acc_sub4.gain(1, map(accel.acceleration.z, acc_min_thresh, acc_max_thresh, 0.0, 1.0));
   }
+
+  // QUIET X
+  if (acc_mute_x == true)
+  {
+    filter1.frequency(0);
+    filter2.frequency(0);
+    mixer_acc_sub1.gain(1, 0);
+    mixer_acc_sub2.gain(1, 0);
+  }
   // QUIET Z
-  else if (accel.acceleration.z > -acc_min_thresh && accel.acceleration.z < acc_min_thresh)
+  if (acc_mute_z == true)
   {
     filter3.frequency(0);
     filter4.frequency(0);
