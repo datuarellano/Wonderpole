@@ -168,7 +168,7 @@ void accelerometer()
   }
   if (current_preset == 2)
   {
-    float amp = 0.6;
+    float amp = 0.4;
     waveform_0.begin(amp, notes[acc_note_0], WAVEFORM_ARBITRARY);
     waveform_0.arbitraryWaveform(AKWF_ebass_0001, 3000);
     waveform_1.begin(amp, notes[acc_note_1], WAVEFORM_ARBITRARY);
