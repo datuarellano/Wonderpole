@@ -27,20 +27,53 @@ void accelerometerTest() {
     accel.acceleration.z = 10;
 
   if (accel.acceleration.x < -acc_min_thresh)
-    Serial.println(accel.acceleration.x);
+  {
+    acc_left = true;
+    acc_right = false;
+    acc_mute_x = false;
+  }
   else if (accel.acceleration.x > acc_min_thresh)
-    Serial.println(accel.acceleration.x);
-  else if (accel.acceleration.x > -acc_min_thresh && accel.acceleration.x < acc_min_thresh)
-    Serial.println("QUIET X");
+  {
+    acc_left = false;
+    acc_right = true;
+    acc_mute_x = false;
+  }
 
   if (accel.acceleration.z < -acc_min_thresh)
-    Serial.println(accel.acceleration.z);
+  {
+    acc_fore = true;
+    acc_back = false;
+    acc_mute_z = false;
+  }
   else if (accel.acceleration.z > acc_min_thresh)
-    Serial.println(accel.acceleration.z);
-  else if (accel.acceleration.z > -acc_min_thresh && accel.acceleration.z < acc_min_thresh)
-    Serial.println("QUIET Z");
+  {
+    acc_fore = false;
+    acc_back = true;
+    acc_mute_z = false;
+  }
+  
+  if (accel.acceleration.x > -acc_min_thresh && accel.acceleration.x < acc_min_thresh)
+  {
+    acc_mute_x = true;
+  }
+  if (accel.acceleration.z > -acc_min_thresh && accel.acceleration.z < acc_min_thresh)
+  {
+    acc_mute_z = true;
+  }
 
-  delay(50);
+  Serial.print("L:");
+  Serial.print(acc_left);
+  Serial.print(" R:");
+  Serial.print(acc_right);
+  Serial.print(" F:");
+  Serial.print(acc_fore);
+  Serial.print(" B:");
+  Serial.println(acc_back);
+  Serial.print("MUTE X:");
+  Serial.print(acc_mute_x);
+  Serial.print("   MUTE Z:");
+  Serial.println(acc_mute_z);
+  Serial.println("---------");
 }
 
 void accelerometer()
