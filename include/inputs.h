@@ -5,7 +5,9 @@
 void inputs()
 {
   // TODO inputs
-  float gain = param1_val * ANALOG;
+  // float gain = param1_val * ANALOG;
+  float gainA = rib_val * ANALOG;
+  float gainB = param1_val * ANALOG;
 
   if (sw_3_1.read() == HIGH && sw_3_2.read() == HIGH)
   {
@@ -15,10 +17,10 @@ void inputs()
   else if (sw_3_2.read() == LOW)
   {
     mixer2.gain(2, 0);
-    mixer2.gain(3, gain);
+    mixer2.gain(3, gainB);
   }
   else {
-    mixer2.gain(2, gain);
-    mixer2.gain(3, gain);
+    mixer2.gain(2, gainA);
+    mixer2.gain(3, gainB);
   }
 }
