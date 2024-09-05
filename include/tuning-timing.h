@@ -176,17 +176,19 @@ void rib_notesOff() {
 void changeTuning() {
   if (current_preset == 0)
   {
-    rib_octave = 12;
-    updateTuning(0, 1); // c major pentatonic
+    rib_octave = -12;
+    updateTuning(9, 2); // 
+    // updateTuning(9, 1); // A major pentatonic
+    // updateTuning(0, 1); // c major pentatonic
   }
   if (current_preset == 1)
   {
     rib_octave = -12;
-    updateTuning(9, 2); // a minor pentatonic
+    updateTuning(5, 2); // F# minor pentatonic
   }
   if (current_preset == 2)
   {
     rib_octave = 0;
-    updateTuning(0, 0); // c major
+    updateTuning(9, 0); // A major
   }
 }
