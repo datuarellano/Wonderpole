@@ -76,6 +76,41 @@ void accelerometerTest() {
   Serial.println("---------");
 }
 
+// Accelerometer mode synth settings
+void acc_design01(float amp) {
+  waveform_0.begin(amp, notes[acc_note_0] * 0.25, WAVEFORM_SINE);
+  waveform_1.begin(amp, notes[acc_note_1] * 0.25, WAVEFORM_SINE);
+  waveform_2.begin(amp, notes[acc_note_2] * 0.25, WAVEFORM_SINE);
+  waveform_3.begin(amp, notes[acc_note_3] * 0.25, WAVEFORM_SINE);
+  waveform_4.begin(amp, notes[acc_note_4] * 0.25, WAVEFORM_SINE);
+  waveform_5.begin(amp, notes[acc_note_5] * 0.25, WAVEFORM_SINE);
+}
+
+void acc_design02(float amp) {
+  waveform_0.begin(amp, notes[acc_note_0] / 2, WAVEFORM_SAWTOOTH);
+  waveform_1.begin(amp, notes[acc_note_1], WAVEFORM_SAWTOOTH);
+  waveform_2.begin(amp, notes[acc_note_2], WAVEFORM_SAWTOOTH);
+  waveform_3.begin(amp, notes[acc_note_3] / 2, WAVEFORM_SAWTOOTH);
+  waveform_4.begin(amp, notes[acc_note_4], WAVEFORM_SAWTOOTH);
+  waveform_5.begin(amp, notes[acc_note_5], WAVEFORM_SAWTOOTH);
+}
+
+void acc_design03(float amp) {
+  waveform_0.begin(amp, notes[acc_note_0], WAVEFORM_ARBITRARY);
+  waveform_0.arbitraryWaveform(AKWF_ebass_0001, 3000);
+  waveform_1.begin(amp, notes[acc_note_1], WAVEFORM_ARBITRARY);
+  waveform_1.arbitraryWaveform(AKWF_ebass_0001, 3000);
+  waveform_2.begin(amp, notes[acc_note_2], WAVEFORM_ARBITRARY);
+  waveform_2.arbitraryWaveform(AKWF_ebass_0001, 3000);
+  waveform_3.begin(amp, notes[acc_note_3], WAVEFORM_ARBITRARY);
+  waveform_3.arbitraryWaveform(AKWF_ebass_0001, 3000);
+  waveform_4.begin(amp, notes[acc_note_4], WAVEFORM_ARBITRARY);
+  waveform_4.arbitraryWaveform(AKWF_ebass_0001, 3000);
+  waveform_5.begin(amp, notes[acc_note_5], WAVEFORM_ARBITRARY);
+  waveform_5.arbitraryWaveform(AKWF_ebass_0001, 3000);
+}
+
+
 void accelerometer()
 {
   mixer2.gain(0, 0.8);
@@ -145,42 +180,18 @@ void accelerometer()
 
   filter4.resonance(3);
 
-  // ACCELEROMETER Mode 2: Drones & Chords
+  // ACCELEROMETER Mode 2: Drones & Chords preset slots
   if (current_preset == 0)
   {
-    float amp = 0.8;
-    waveform_0.begin(amp, notes[acc_note_0], WAVEFORM_SINE);
-    waveform_1.begin(amp, notes[acc_note_1], WAVEFORM_SINE);
-    waveform_2.begin(amp, notes[acc_note_2], WAVEFORM_SINE);
-    waveform_3.begin(amp, notes[acc_note_3], WAVEFORM_SINE);
-    waveform_4.begin(amp, notes[acc_note_4], WAVEFORM_SINE);
-    waveform_5.begin(amp, notes[acc_note_5], WAVEFORM_SINE);
+    acc_design01(0.7);
   }
   if (current_preset == 1)
   {
-    float amp = 0.3;
-    waveform_0.begin(amp, notes[acc_note_0] / 2, WAVEFORM_SAWTOOTH);
-    waveform_1.begin(amp, notes[acc_note_1], WAVEFORM_SAWTOOTH);
-    waveform_2.begin(amp, notes[acc_note_2], WAVEFORM_SAWTOOTH);
-    waveform_3.begin(amp, notes[acc_note_3] / 2, WAVEFORM_SAWTOOTH);
-    waveform_4.begin(amp, notes[acc_note_4], WAVEFORM_SAWTOOTH);
-    waveform_5.begin(amp, notes[acc_note_5], WAVEFORM_SAWTOOTH);
+    acc_design03(0.4);
   }
   if (current_preset == 2)
   {
-    float amp = 0.4;
-    waveform_0.begin(amp, notes[acc_note_0], WAVEFORM_ARBITRARY);
-    waveform_0.arbitraryWaveform(AKWF_ebass_0001, 3000);
-    waveform_1.begin(amp, notes[acc_note_1], WAVEFORM_ARBITRARY);
-    waveform_1.arbitraryWaveform(AKWF_ebass_0001, 3000);
-    waveform_2.begin(amp, notes[acc_note_2], WAVEFORM_ARBITRARY);
-    waveform_2.arbitraryWaveform(AKWF_ebass_0001, 3000);
-    waveform_3.begin(amp, notes[acc_note_3], WAVEFORM_ARBITRARY);
-    waveform_3.arbitraryWaveform(AKWF_ebass_0001, 3000);
-    waveform_4.begin(amp, notes[acc_note_4], WAVEFORM_ARBITRARY);
-    waveform_4.arbitraryWaveform(AKWF_ebass_0001, 3000);
-    waveform_5.begin(amp, notes[acc_note_5], WAVEFORM_ARBITRARY);
-    waveform_5.arbitraryWaveform(AKWF_ebass_0001, 3000);
+    acc_design02(0.3);
   }
 
   
