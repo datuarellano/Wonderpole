@@ -6,8 +6,8 @@ void inputs()
 {
   // TODO inputs
   // float gain = param1_val * ANALOG;
-  float gainA = rib_val * ANALOG;
-  float gainB = param1_val * ANALOG;
+  float gainA = rib_val * ANALOG  * 25;
+  float gainB = param1_val * ANALOG * 2;
 
   if (sw_3_1.read() == HIGH && sw_3_2.read() == HIGH)
   {
