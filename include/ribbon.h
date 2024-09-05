@@ -50,89 +50,148 @@ void ribbonTrigger()
     LED_red();
 }
 
-void ribbon()
-{
-  ribbonRead();
-  ribbonMode();
-  ribbonTrigger();
 
-  float waveform6_amp = 0.8;
-  float waveform7_amp = 0.7;
-  float waveform8_amp = 0.7;
-
-  // Ribbon sound design presets
-  if (current_preset == 0)
-  {
-    // Oscillator 1
-    waveform_6.begin(waveform6_amp, freq * 2, WAVEFORM_SINE);
-    // waveform_6.arbitraryWaveform(AKWF_eguitar_0001, 3000);
-    waveform6_envelope.attack(map(param1_val, 0, 1023, 0, 2000));
-    waveform6_envelope.decay(500);
-    waveform6_envelope.sustain(0.6);
-    waveform6_envelope.release(500);
-    waveform6_filter.frequency(900);
-    waveform6_filter.resonance(5);
-    // Oscillator 2
-    waveform_7.begin(waveform7_amp, freq * 3, WAVEFORM_SINE);
-    waveform7_envelope.attack(map(param1_val, 0, 1023, 700, 2000));
-    waveform7_envelope.decay(500);
-    waveform7_envelope.sustain(0.8);
-    waveform7_envelope.release(2000);
-    // Oscillator 3
-    waveform_8.begin(waveform8_amp, freq * 0.5, WAVEFORM_SINE);
-    waveform8_envelope.attack(map(param1_val, 0, 1023, 0, 2000));
-    waveform8_envelope.decay(500);
-    waveform8_envelope.sustain(0.8);
-    waveform8_envelope.release(2000);
-  }
-  if (current_preset == 1)
-  {
-    // Oscillator 1
-    waveform_6.begin(waveform6_amp * 0.5, freq, WAVEFORM_ARBITRARY);
-    waveform_6.arbitraryWaveform(AKWF_eguitar_0001, 3000);
-    waveform6_envelope.attack(param1_val);
-    waveform6_envelope.decay(500);
-    waveform6_envelope.sustain(0.1);
-    waveform6_envelope.release(300);
-    waveform6_filter.frequency(900);
-    waveform6_filter.resonance(5);
-    // Oscillator 2
-    waveform_7.begin(waveform7_amp * 0.5, freq * 2, WAVEFORM_SAWTOOTH);
-    waveform7_envelope.attack(500);
-    waveform7_envelope.decay(500);
-    waveform7_envelope.sustain(1.0);
-    waveform7_envelope.release(100);
-    // Oscillator 3
-    waveform_8.begin(waveform8_amp * 0.5, freq * 0.5, WAVEFORM_SAMPLE_HOLD);
-    waveform8_envelope.attack(map(param1_val, 0, 1023, 0, 2000));
-    waveform8_envelope.decay(500);
-    waveform8_envelope.sustain(0.8);
-    waveform8_envelope.release(2000);
-  }
-  if (current_preset == 2)
-  {
-    // Oscillator 1
-    waveform_6.begin(waveform6_amp, freq, WAVEFORM_ARBITRARY);
-    waveform_6.arbitraryWaveform(AKWF_epiano_0001, 3000);
-    // waveform_6.arbitraryWaveform(AKWF_flute_0001, 3000);
-    // waveform_6.arbitraryWaveform(AKWF_hvoice_0001, 3000);
-    waveform6_envelope.attack(map(param1_val, 0, 1023, 0, 2000));
-    waveform6_envelope.decay(500);
-    waveform6_envelope.sustain(1.0);
-    waveform6_envelope.release(300);
-    waveform6_filter.frequency(2000);
-    waveform6_filter.resonance(1);
-    // Oscillator 2
-    waveform_7.begin(waveform7_amp * 0.7, freq * 2, WAVEFORM_SAWTOOTH);
-    waveform7_envelope.attack(map(param1_val, 0, 1023, 0, 2000));
-    waveform7_envelope.decay(500);
-    waveform7_envelope.sustain(0.6);
-    waveform7_envelope.release(2000);
-    // Oscillator 3
-    waveform_8.begin(waveform8_amp * 0.6, freq * 0.5, WAVEFORM_TRIANGLE);
-    waveform8_envelope.attack(map(param1_val, 0, 1023, 0, 2000));
-    waveform8_envelope.decay(500);
-    waveform8_envelope.sustain(0.6);
-    waveform8_envelope.release(1000);
-  }
+// Ribbon Mode Synth Settings
+void ribbon_design01(float w6_amp, float w7_amp, float w8_amp) {
+  // Oscillator 1
+  waveform_6.begin(w6_amp, freq * 2, WAVEFORM_SINE);
+  // waveform_6.arbitraryWaveform(AKWF_eguitar_0001, 3000);
+  waveform6_envelope.attack(map(param1_val, 0, 1023, 0, 2000));
+  waveform6_envelope.decay(500);
+  waveform6_envelope.sustain(0.6);
+  waveform6_envelope.release(500);
+  waveform6_filter.frequency(900);
+  waveform6_filter.resonance(5);
+  // Oscillator 2
+  waveform_7.begin(w7_amp, freq * 3, WAVEFORM_SINE);
+  waveform7_envelope.attack(map(param1_val, 0, 1023, 700, 2000));
+  waveform7_envelope.decay(500);
+  waveform7_envelope.sustain(0.8);
+  waveform7_envelope.release(2000);
+  // Oscillator 3
+  waveform_8.begin(w8_amp, freq * 0.5, WAVEFORM_SINE);
+  waveform8_envelope.attack(map(param1_val, 0, 1023, 0, 2000));
+  waveform8_envelope.decay(500);
+  waveform8_envelope.sustain(0.8);
+  waveform8_envelope.release(2000);
 }
+
+void ribbon_design02(float w6_amp, float w7_amp, float w8_amp) {
+  // Oscillator 1
+  waveform_6.begin(w6_amp * 0.5, freq, WAVEFORM_ARBITRARY);
+  waveform_6.arbitraryWaveform(AKWF_eguitar_0001, 3000);
+  waveform6_envelope.attack(param1_val);
+  waveform6_envelope.decay(500);
+  waveform6_envelope.sustain(0.1);
+  waveform6_envelope.release(300);
+  waveform6_filter.frequency(900);
+  waveform6_filter.resonance(5);
+  // Oscillator 2
+  waveform_7.begin(w7_amp * 0.5, freq * 2, WAVEFORM_SAWTOOTH);
+  waveform7_envelope.attack(500);
+  waveform7_envelope.decay(500);
+  waveform7_envelope.sustain(1.0);
+  waveform7_envelope.release(100);
+  // Oscillator 3
+  waveform_8.begin(w8_amp * 0.5, freq * 0.5, WAVEFORM_SAMPLE_HOLD);
+  waveform8_envelope.attack(map(param1_val, 0, 1023, 0, 2000));
+  waveform8_envelope.decay(500);
+  waveform8_envelope.sustain(0.8);
+  waveform8_envelope.release(2000);
+}
+
+void ribbon_design03(float w6_amp, float w7_amp, float w8_amp) {
+  // Oscillator 1
+  waveform_6.begin(w6_amp, freq, WAVEFORM_ARBITRARY);
+  waveform_6.arbitraryWaveform(AKWF_epiano_0001, 3000);
+  // waveform_6.arbitraryWaveform(AKWF_flute_0001, 3000);
+  // waveform_6.arbitraryWaveform(AKWF_hvoice_0001, 3000);
+  waveform6_envelope.attack(map(param1_val, 0, 1023, 0, 2000));
+  waveform6_envelope.decay(500);
+  waveform6_envelope.sustain(1.0);
+  waveform6_envelope.release(300);
+  waveform6_filter.frequency(2000);
+  waveform6_filter.resonance(1);
+  // Oscillator 2
+  waveform_7.begin(w7_amp * 0.7, freq * 2, WAVEFORM_SAWTOOTH);
+  waveform7_envelope.attack(map(param1_val, 0, 1023, 0, 2000));
+  waveform7_envelope.decay(500);
+  waveform7_envelope.sustain(0.6);
+  waveform7_envelope.release(2000);
+  // Oscillator 3
+  waveform_8.begin(w8_amp * 0.6, freq * 0.5, WAVEFORM_TRIANGLE);
+  waveform8_envelope.attack(map(param1_val, 0, 1023, 0, 2000));
+  waveform8_envelope.decay(500);
+  waveform8_envelope.sustain(0.6);
+  waveform8_envelope.release(1000);
+}
+
+// DESIGN04 notes: bassy 
+void ribbon_design04(float w6_amp, float w7_amp, float w8_amp) {
+  // Oscillator 1
+  waveform_6.begin(w6_amp, freq * 0.25, WAVEFORM_SINE);
+  waveform6_envelope.attack(map(param1_val, 0, 1023, 0, 2000));
+  waveform6_envelope.decay(500);
+  waveform6_envelope.sustain(0.6);
+  waveform6_envelope.release(500);
+  waveform6_filter.frequency(900);
+  waveform6_filter.resonance(5);
+  // Oscillator 2
+  waveform_7.begin(w7_amp, freq * 0.5, WAVEFORM_SINE);
+  waveform7_envelope.attack(map(param1_val, 0, 1023, 700, 2000));
+  waveform7_envelope.decay(500);
+  waveform7_envelope.sustain(0.8);
+  waveform7_envelope.release(2000);
+  // Oscillator 3
+  waveform_8.begin(w8_amp, freq * map(rib_val, 0, 1023, 0, 0.37), WAVEFORM_SAWTOOTH);
+  waveform8_envelope.attack(map(param1_val, 0, 1023, 0, 2000));
+  waveform8_envelope.decay(500);
+  waveform8_envelope.sustain(0.8);
+  waveform8_envelope.release(2000);
+}
+
+void ribbon_design05(float w6_amp, float w7_amp, float w8_amp) {
+  // Oscillator 1
+  int p2 = map(param2_val, 0, 1023, 1, 3);
+  waveform_6.begin(w6_amp, freq * p2 * 0.25, WAVEFORM_ARBITRARY);
+  waveform_6.arbitraryWaveform(AKWF_flute_0001, 3000);
+  waveform6_envelope.attack(param1_val);
+  waveform6_envelope.decay(500);
+  waveform6_envelope.sustain(0.1);
+  waveform6_envelope.release(300);
+  waveform6_filter.frequency(900);
+  waveform6_filter.resonance(5);
+  // Oscillator 2
+  waveform_7.begin(w7_amp, freq * 0.25, WAVEFORM_SAWTOOTH);
+  waveform7_envelope.attack(500);
+  waveform7_envelope.decay(500);
+  waveform7_envelope.sustain(1.0);
+  waveform7_envelope.release(100);
+  // Oscillator 3
+  waveform_8.begin(w8_amp, freq * p2 * 0.25, WAVEFORM_SINE);
+  waveform8_envelope.attack(param1_val);
+  waveform8_envelope.decay(500);
+  waveform8_envelope.sustain(0.8);
+  waveform8_envelope.release(2000);
+}
+
+  void ribbon()
+  {
+    ribbonRead();
+    ribbonModeSwitch();
+    ribbonTrigger();
+
+    // Ribbon sound design preset slots
+    if (current_preset == 0)
+    {
+      ribbon_design04(0.8, 0.7, 0.9);
+    }
+    if (current_preset == 1)
+    {
+      ribbon_design05(0.7, 0.6, 0.6);
+    }
+    if (current_preset == 2)
+    {
+      ribbon_design01(0.8, 0.7, 0.7);
+    }
+  }
