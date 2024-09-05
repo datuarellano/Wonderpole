@@ -12,15 +12,15 @@ void ribbonRead()
   // Serial.println(rib_val);
 }
 
-void ribbonMode()
+void ribbonModeSwitch()
 {
   // Ribbon mode switch
   if (sw_2_1.read() == LOW)
     ribbonMode(1);
   else if (sw_2_2.read() == LOW)
-    ribbonMode(0);
-  else if (sw_2_1.read() == HIGH && sw_2_2.read() == HIGH)
     ribbonMode(2);
+  else if (sw_2_1.read() == HIGH && sw_2_2.read() == HIGH)
+    ribbonMode(0);
 
   if (sw_2_1.fell())
     rib_notesOff();
