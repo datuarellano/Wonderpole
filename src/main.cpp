@@ -38,8 +38,8 @@ void loop() {
   updateButtonsSwitches();
   potsRead();
   volume();
+  // mainMix();
   encoderCyclePresets();
-  mainMix();
   changeTuning();
 
   //// RIBBON ///////////////////////////////////////////////////////////////
