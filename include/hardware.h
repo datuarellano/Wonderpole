@@ -173,7 +173,8 @@ void potsRead() {
 void volume() {
   // TODO VOLUME
   volume_val = volume_val * ANALOG;
-  mainAmp.gain(volume_val);
+  mainAmp_LEFT.gain(volume_val);
+  mainAmp_RIGHT.gain(volume_val);
   sgtl5000_1.volume(volume_val);
 }
 
